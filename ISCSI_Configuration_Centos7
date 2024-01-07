@@ -299,6 +299,10 @@ cat /etc/target/saveconfig.json
 
 
 
+on client 
+systemctl start iscsid 
+iscsiadm -m discovery -t st -p 192.168.144.154 --login
+iscsiadm -m session
 
 
 
