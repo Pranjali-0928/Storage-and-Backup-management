@@ -4,6 +4,16 @@ centos7 : Processor:1 RAM:1GB Attach 2 extra hard disks of 20Gb
 systemctl stop firewalld.service 
 yum install -y targetcli
 
+yum install iscsi-initiator-utils
+cd /etc/iscsi/
+cat initiatorname.iscsi
+systemctl restart iscsi
+fdisk -l
+pvcreate /dev/sdc /dev/sdb
+vgcreate vg_iscsi /dev/sdb /dev/sdc
+lvcreate -n lv_iscsi-disk-01 -L 1G vg_iscsi
+lvs
+targetcli
 
 
 targetcli
